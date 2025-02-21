@@ -77,7 +77,7 @@ if uploaded_files:
         st.subheader("Visualize Your Data")
         if st.checkbox(f"Generate Visualization for {file.name}", key=f"visualize_{file.name}"):
             if chart_columns:
-                chart_df = df[chart_columns]
+                chart_df = mutableDF[chart_columns]
                 numeric_chart_df = chart_df.select_dtypes(include='number')
                 if numeric_chart_df.empty:
                     st.warning(
@@ -104,7 +104,7 @@ if uploaded_files:
             file_name = file.name.replace(file_ext, ".xlsx")
             mime_type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 
-        buffer.seek(0)  # Reset buffer
+        # buffer.seek(0)  # Reset buffer
         st.download_button(
             label=f"Download {file.name} as {conversion_type}",
             data=buffer,
